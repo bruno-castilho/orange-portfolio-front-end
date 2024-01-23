@@ -57,6 +57,7 @@
     height: 41px;
     flex-direction: column;
     justify-content: center;
+    text-decoration: none;
 
     color: var(--color-neutral-60);
 

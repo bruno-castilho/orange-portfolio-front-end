@@ -1,8 +1,10 @@
 import IconButton from '@mui/material/IconButton'
+
 import styles from './styles.module.css'
 import logo from '../../assets/logo.svg'
 import perfil from '../../assets/perfil.svg'
 import { Notifications } from '@mui/icons-material'
+import { Link } from 'react-router-dom'
 
 export function Header() {
   return (
@@ -12,8 +14,8 @@ export function Header() {
           <img src={logo} alt="" />
           <div>
             <div>
-              <a>Meus projetos</a>
-              <a>Descobrir</a>
+              <Link to="/meusprojetos">Meus projetos</Link>
+              <Link to="/descobrir">Descobrir</Link>
             </div>
           </div>
         </div>
