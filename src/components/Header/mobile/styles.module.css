@@ -1,0 +1,26 @@
+.logo  {
+    width: 83px;
+    height: 31px;
+    display: flex;
+    align-items: center;
+}
+
+
+.userContent {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-neutral-60);
+}
+
+.userContent img {
+    width: 40px;
+    height: 40px;
+    border-radius: 300px;
+}
+
+@media (min-width: 768px) {
+    .container {
+        display: none;
+    }
+}
