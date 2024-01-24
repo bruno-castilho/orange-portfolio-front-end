@@ -1,0 +1,63 @@
+.header {
+    display: flex;
+    height: 73px;
+    padding: var(--2, 16px) 30px;
+
+    justify-content: space-between;
+    align-items: center;
+
+    border-radius: var(--none, 0px);
+    border-top: var(--none, 0px) solid #113;
+    border-right: var(--none, 0px) solid #113;
+    border-bottom: 1px solid #113;
+    border-left: var(--none, 0px) solid #113;
+    background: #113;
+}
+
+.menu {
+    gap: 100px;
+    display: flex;
+    width: 712px;
+    align-items: center;
+}
+
+
+
+.links {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+
+
+}
+
+.links a{
+    text-decoration: none;
+    color: var(--color-neutral-60);
+    /* [Orange P] Style Guide/H6 */
+    font-family: Roboto;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px; /* 100% */
+    letter-spacing: 0.15px;
+}
+
+.userContent {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: var(--color-neutral-60);
+}
+
+.userContent img {
+    width: 40px;
+    height: 40px;
+    border-radius: 300px;
+}
+
+@media (max-width: 768px) {
+    .header {
+        display: none;
+    }
+}
