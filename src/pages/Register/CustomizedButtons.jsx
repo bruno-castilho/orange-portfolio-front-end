@@ -15,7 +15,7 @@ const CustomizedButton = styled(Button)(({ theme }) => ({
 export default function CustomizedButtons() {
   return (
     <Stack spacing={2} direction="row" component="form">
-      <CustomizedButton type="submit" variant="contained">
+      <CustomizedButton type="submit" value="Cadastrar" variant="contained">
          ENTRAR
       </CustomizedButton>
     </Stack>
