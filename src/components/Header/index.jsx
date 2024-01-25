@@ -1,5 +1,5 @@
-import { Desktop } from './desktop'
-import { Mobile } from './mobile'
+import { Desktop } from './Desktop'
+import { Mobile } from './Mobile'
 
 export function Header() {
   return (
