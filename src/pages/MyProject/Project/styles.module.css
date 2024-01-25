@@ -1,9 +1,25 @@
 .projectCard {
+    position: relative;
     width: 389px;
     height: 258px;
 
     border-radius: var(--borderRadius, 4px);
     background: lightgray 50% / cover no-repeat;
+}
+
+.editButton {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+
+    background: var(--Color-Brand-Secundria-Secondary-70, #FC9);
+    border-radius: 300px;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }
 
 .projectInfo {
