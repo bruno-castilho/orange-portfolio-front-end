@@ -3,8 +3,7 @@ import Button from '@mui/material/Button'
 import perfil from '../../assets/perfil.svg'
 import CollectionsIcon from '@mui/icons-material/Collections'
 import { TextField } from '@mui/material'
-
-import { Project } from './Project'
+import { CardProject } from '../../components/ProjectCard'
 
 export function MyProject() {
   return (
@@ -43,15 +42,15 @@ export function MyProject() {
             <p>Compartilhe seu talento com milhares de pessoas</p>
           </div>
 
-          <Project />
+          <CardProject />
 
-          <Project />
+          <CardProject />
 
-          <Project />
+          <CardProject />
 
-          <Project />
+          <CardProject />
 
-          <Project />
+          <CardProject />
         </div>
       </section>
     </main>
