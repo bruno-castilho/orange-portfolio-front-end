@@ -1,28 +1,35 @@
-import styles from './styles.module.css'
 import Button from '@mui/material/Button'
 import perfil from '../../assets/perfil.svg'
-import CollectionsIcon from '@mui/icons-material/Collections'
 import { TextField } from '@mui/material'
 import { CardProject } from '../../components/ProjectCard'
+import {
+  MyProjectContainer,
+  MyProjectFilter,
+  MyProjectList,
+  MyProjectProfile,
+  MyProjectProfileContent,
+} from './styles'
+import { NewProjectCard } from './NewProjectCard'
 
 export function MyProject() {
   return (
-    <main className={styles.myprojectContainer}>
-      <section className={styles.profile}>
+    <MyProjectContainer>
+      <MyProjectProfile>
         <div>
-          <img src={perfil} alt="" className={styles.avatar} />
-          <div className={styles.user}>
+          <img src={perfil} alt="" />
+          <MyProjectProfileContent>
             <strong>Camila Soares</strong>
             <p>Brasil</p>
             <Button disabled variant="contained" color="primary" size="large">
               Adicionar Projeto
             </Button>
-          </div>
+          </MyProjectProfileContent>
         </div>
-      </section>
-      <section className={styles.projects}>
-        <div className={styles.infoContainer}>
-          <div className={styles.info}>
+      </MyProjectProfile>
+
+      <section>
+        <MyProjectFilter>
+          <div>
             <h1>Meus Projetos</h1>
             <TextField
               fullWidth
@@ -31,28 +38,22 @@ export function MyProject() {
               size="medium"
             />
           </div>
-        </div>
+        </MyProjectFilter>
 
-        <div className={styles.cards}>
-          <div className={styles.card}>
-            <div className={styles.icon}>
-              <CollectionsIcon />
-            </div>
-            <p>Adicione seu primeiro projeto</p>
-            <p>Compartilhe seu talento com milhares de pessoas</p>
-          </div>
+        <MyProjectList>
+          <NewProjectCard />
 
-          <CardProject />
+          <CardProject withMenu />
 
-          <CardProject />
+          <CardProject withMenu />
 
-          <CardProject />
+          <CardProject withMenu />
 
-          <CardProject />
+          <CardProject withMenu />
 
-          <CardProject />
-        </div>
+          <CardProject withMenu />
+        </MyProjectList>
       </section>
-    </main>
+    </MyProjectContainer>
   )
 }
