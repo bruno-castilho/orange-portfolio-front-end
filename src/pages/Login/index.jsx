@@ -3,6 +3,7 @@ import logo from '../../assets/logo googleg 48dp.svg'
 import frame from '../../assets/Frame.svg'
 import TextField from '@mui/material/TextField';
 import CustomizedButtons from './CustomizedButtons'; 
+import { Link } from 'react-router-dom'
 
 
 export function Login() {
@@ -58,8 +59,8 @@ export function Login() {
             <CustomizedButtons type="submit" className={styles.button}/>
           </form>
           
-          <div className={styles.teste}>
-          <a href="">Cadastre-se</a>
+          <div className={styles.registro}>
+          <a href=""><Link to={'/registrar'}>Cadastre-se</Link> </a>
           </div>
         </div>
       </div>
