@@ -5,7 +5,7 @@ import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import IconButton from '@mui/material/IconButton'
 import MenuIcon from '@mui/icons-material/Menu'
-import styles from './styles.module.css'
+
 import logo from '../../../assets/logo.svg'
 import perfil from '../../../assets/perfil.svg'
 import { Notifications } from '@mui/icons-material'
@@ -23,6 +23,7 @@ import {
 import LogoutIcon from '@mui/icons-material/Logout'
 import { Link } from 'react-router-dom'
 import Popper from '@mui/material/Popper'
+import { HeaderContainer, HeaderLogo, HeaderUserContent } from './styles'
 
 export function Mobile() {
   const [open, setOpen] = React.useState(false)
@@ -50,7 +51,7 @@ export function Mobile() {
   }, [open])
 
   return (
-    <div className={styles.container}>
+    <HeaderContainer>
       <Box>
         <AppBar
           position="static"
@@ -81,15 +82,15 @@ export function Mobile() {
             </IconButton>
 
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              <img src={logo} alt="" className={styles.logo} />
+              <HeaderLogo src={logo} alt="" />
             </Typography>
 
-            <div className={styles.userContent}>
+            <HeaderUserContent>
               <img src={perfil} alt="" />
               <IconButton color="inherit" size="medium">
                 <Notifications />
               </IconButton>
-            </div>
+            </HeaderUserContent>
           </Toolbar>
         </AppBar>
         <Popper
@@ -170,6 +171,6 @@ export function Mobile() {
           )}
         </Popper>
       </Box>
-    </div>
+    </HeaderContainer>
   )
 }
