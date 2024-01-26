@@ -8,14 +8,14 @@ const CustomizedButton = styled(Button)(({ theme }) => ({
   backgroundColor: '#F52',
   '&:hover': {
     backgroundColor: '#F52',
-    
   },
+  width: '100%', 
 }));
 
 export default function CustomizedButtons() {
   return (
     <Stack spacing={2} direction="row" component="form">
-      <CustomizedButton type="submit" variant="contained">
+      <CustomizedButton type="submit" value="Cadastrar" variant="contained">
          ENTRAR
       </CustomizedButton>
     </Stack>

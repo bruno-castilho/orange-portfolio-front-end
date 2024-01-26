@@ -8,8 +8,8 @@ const CustomizedButton = styled(Button)(({ theme }) => ({
   backgroundColor: '#F52',
   '&:hover': {
     backgroundColor: '#F52',
-    
   },
+  width: '100%', 
 }));
 
 export default function CustomizedButtons() {

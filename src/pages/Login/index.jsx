@@ -11,14 +11,14 @@ export function Login() {
     <main className={styles.main}>
       <div className={styles.imagem_login}></div>
       <div className={styles.layout_form}>
-        <h3>Entre no Orange Portfólio</h3>
+        <h3 className={styles.title}>Entre no Orange Portfólio</h3>
         <a className={styles.btn_google} href="">
           <img src={logo} alt="" />
           <p>Entrar com Google</p>
         </a>
         <div className={styles.form_contaniner}>
           <div className={styles.box_login}>
-            <h5>Faça login com email</h5>
+            <h5 className={styles.subtitle}>Faça login com email</h5>
             <img src={frame} alt="" />
           </div>
           <form action="" method="post">

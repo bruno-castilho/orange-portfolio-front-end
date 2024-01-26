@@ -17,7 +17,7 @@ function CadastrarUsuario(){
         Cadastro feito com sucesso
       </Alert>
     </Stack>
-    <h3>Cadastre-se</h3>
+    <h3 className={styles.title}>Cadastre-se</h3>
     <div className={styles.form_contaniner}>
       <form action="" method="post" onSubmit={CadastrarUsuario}>
         <div className={styles.form_input_row}>
@@ -88,7 +88,7 @@ function CadastrarUsuario(){
               },
             }} />
         </div>
-        <CustomizedButtons type="submit" value="Cadastrar" className={styles.button} />
+        <CustomizedButtons type="submit" value="Cadastrar" className={styles.subimit} />
       </form>
     </div>
   </div>
