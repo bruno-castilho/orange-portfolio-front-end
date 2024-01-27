@@ -10,16 +10,19 @@ import {
   MyProjectProfileContent,
 } from './styles'
 import { NewProjectCard } from './NewProjectCard'
+import { useContext } from 'react'
+import { AuthContext } from '../../contexts/AuthContext'
 
 export function MyProject() {
+  const { user } = useContext(AuthContext)
   return (
     <MyProjectContainer>
       <MyProjectProfile>
         <div>
-          <img src={perfil} alt="" />
+          <img src={user?.avatar_url} alt="" />
           <MyProjectProfileContent>
-            <strong>Camila Soares</strong>
-            <p>Brasil</p>
+            <strong>{`${user?.first_name} ${user?.last_name}`}</strong>
+            <p>{user?.country}</p>
             <Button disabled variant="contained" color="primary" size="large">
               Adicionar Projeto
             </Button>

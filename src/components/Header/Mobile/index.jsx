@@ -24,8 +24,10 @@ import LogoutIcon from '@mui/icons-material/Logout'
 import { Link } from 'react-router-dom'
 import Popper from '@mui/material/Popper'
 import { HeaderContainer, HeaderLogo, HeaderUserContent } from './styles'
+import { AuthContext } from '../../../contexts/AuthContext'
 
 export function Mobile() {
+  const { user, handleLogout } = React.useContext(AuthContext)
   const [open, setOpen] = React.useState(false)
   const anchorRef = React.useRef(null)
 
@@ -86,7 +88,7 @@ export function Mobile() {
             </Typography>
 
             <HeaderUserContent>
-              <img src={perfil} alt="" />
+              <img src={user?.avatar_url} alt="" />
               <IconButton color="inherit" size="medium">
                 <Notifications />
               </IconButton>
@@ -159,7 +161,7 @@ export function Mobile() {
                     Descobrir
                   </MenuItem>
                   <Divider />
-                  <MenuItem onClick={handleClose}>
+                  <MenuItem onClick={handleLogout}>
                     <ListItemIcon>
                       <LogoutIcon fontSize="medium" />
                     </ListItemIcon>

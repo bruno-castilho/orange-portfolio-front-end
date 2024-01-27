@@ -1,7 +1,6 @@
-import React from 'react';
-import { styled } from '@mui/material/styles';
-import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
+import React from 'react'
+
+import { Button, Stack, styled } from '@mui/material'
 
 const CustomizedButton = styled(Button)(({ theme }) => ({
   color: theme.palette.getContrastText('#F52'),
@@ -9,15 +8,15 @@ const CustomizedButton = styled(Button)(({ theme }) => ({
   '&:hover': {
     backgroundColor: '#F52',
   },
-  width: '100%', 
-}));
+  width: '100%',
+}))
 
 export default function CustomizedButtons() {
   return (
-    <Stack spacing={2} direction="row" component="form">
+    <Stack spacing={2} direction="row">
       <CustomizedButton type="submit" value="Cadastrar" variant="contained">
-         ENTRAR
+        ENTRAR
       </CustomizedButton>
     </Stack>
-  );
+  )
 }
