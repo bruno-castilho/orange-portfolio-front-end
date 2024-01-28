@@ -60,18 +60,9 @@ export function Login() {
                   type="email"
                   label="Email address"
                   variant="outlined"
-                  InputLabelProps={{
-                    style: { color: '#000000' },
-                  }}
                   sx={{
                     width: '100%',
                     fontFamily: 'Roboto',
-                    '& .MuiOutlinedInput-root': {
-                      borderColor: '#000000',
-                      '&.Mui-focused fieldset': {
-                        borderColor: '#000000',
-                      },
-                    },
                   }}
                   {...register('email')}
                 />
@@ -85,12 +76,6 @@ export function Login() {
                   sx={{
                     width: '100%',
                     fontFamily: 'Roboto',
-                    '& .MuiOutlinedInput-root': {
-                      borderColor: '#000000',
-                      '&.Mui-focused fieldset': {
-                        borderColor: '#000000',
-                      },
-                    },
                   }}
                   {...register('password')}
                 />
