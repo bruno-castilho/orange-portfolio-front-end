@@ -6,10 +6,17 @@ export const AuthContext = createContext({})
 
 export function AuthContextProvider({ children }) {
   const [user, setUser] = useState(null)
+  const [token, setToken] = useState(
+    localStorage.getItem('@orange-portfolio:token'),
+  )
+
+  console.log(token)
   const navigate = useNavigate()
 
-  function loginSucess(userParams) {
-    setUser(userParams)
+  function loginSucess(data) {
+    localStorage.setItem('@orange-portfolio:token', data.token)
+    setToken(data.token)
+    setUser(data.user)
     navigate('/meusprojetos')
   }
 
@@ -17,7 +24,7 @@ export function AuthContextProvider({ children }) {
     api
       .post('/login', data)
       .then((response) => {
-        loginSucess(response.data.user)
+        loginSucess(response.data)
       })
       .catch((error) => {
         console.error(error)
@@ -40,6 +47,7 @@ export function AuthContextProvider({ children }) {
       .post('/logout', {})
       .then(() => {
         setUser(null)
+        localStorage.setItem('@orange-portfolio:token', '')
         navigate('/login')
       })
       .catch((error) => {
@@ -51,13 +59,14 @@ export function AuthContextProvider({ children }) {
     const path = window.location.pathname
 
     if (path !== '/auth/callback') {
+      const params = { token }
       api
-        .get('/logged', {})
+        .get('/logged', { params })
         .then((response) => {
           const { data } = response
 
           if (data.logged) {
-            setUser(data.user)
+            loginSucess(data)
             if (path === '/login' || path === '/registrar')
               navigate('/meusprojetos')
           } else {
@@ -69,12 +78,13 @@ export function AuthContextProvider({ children }) {
           console.log(error)
         })
     }
-  }, [navigate])
+  }, [])
 
   return (
     <AuthContext.Provider
       value={{
         user,
+        token,
         handleLogin,
         handleGoogleLogin,
         handleLogout,
