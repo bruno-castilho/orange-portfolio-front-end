@@ -98,7 +98,7 @@ export function Login() {
                   variant="contained"
                   color="primary"
                   size="large"
-                  ele
+                  type="submit"
                   sx={{
                     width: '100%',
                     background: 'var(--color-secondary-100)',

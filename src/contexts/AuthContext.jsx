@@ -61,7 +61,7 @@ export function AuthContextProvider({ children }) {
             if (path === '/login' || path === '/registrar')
               navigate('/meusprojetos')
           } else {
-            if (!(path === '/login' || path === '/registrar'))
+            if (path === '/meusprojetos' || path === '/descobrir')
               navigate('/login')
           }
         })

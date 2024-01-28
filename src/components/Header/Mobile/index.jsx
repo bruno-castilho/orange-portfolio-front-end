@@ -7,7 +7,6 @@ import IconButton from '@mui/material/IconButton'
 import MenuIcon from '@mui/icons-material/Menu'
 
 import logo from '../../../assets/logo.svg'
-import perfil from '../../../assets/perfil.svg'
 import { Notifications } from '@mui/icons-material'
 import Paper from '@mui/material/Paper'
 import {
@@ -88,7 +87,7 @@ export function Mobile() {
             </Typography>
 
             <HeaderUserContent>
-              <img src={user?.avatar_url} alt="" />
+              <img src={user?.url_avatar} alt="" />
               <IconButton color="inherit" size="medium">
                 <Notifications />
               </IconButton>

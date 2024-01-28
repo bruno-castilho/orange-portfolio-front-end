@@ -1,7 +1,7 @@
 import IconButton from '@mui/material/IconButton'
 
 import logo from '../../../assets/logo.svg'
-import perfil from '../../../assets/perfil.svg'
+
 import { Notifications } from '@mui/icons-material'
 import { Link } from 'react-router-dom'
 import { HeaderContainer, HeaderMenuContent, HeaderUserContent } from './styles'
@@ -21,7 +21,7 @@ export function Desktop() {
       </HeaderMenuContent>
 
       <HeaderUserContent>
-        <img src={user?.avatar_url} alt="" />
+        <img src={user?.url_avatar} alt="" />
         <IconButton color="inherit" size="medium">
           <Notifications />
         </IconButton>

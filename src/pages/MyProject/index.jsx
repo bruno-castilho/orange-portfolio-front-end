@@ -1,5 +1,5 @@
 import Button from '@mui/material/Button'
-import perfil from '../../assets/perfil.svg'
+
 import { TextField } from '@mui/material'
 import { CardProject } from '../../components/ProjectCard'
 import {
@@ -19,10 +19,10 @@ export function MyProject() {
     <MyProjectContainer>
       <MyProjectProfile>
         <div>
-          <img src={user?.avatar_url} alt="" />
+          <img src={user?.url_avatar} alt="" />
           <MyProjectProfileContent>
-            <strong>{`${user?.first_name} ${user?.last_name}`}</strong>
-            <p>{user?.country}</p>
+            <strong>{`${user?.nome} ${user?.sobrenome}`}</strong>
+            <p>Brasil</p>
             <Button disabled variant="contained" color="primary" size="large">
               Adicionar Projeto
             </Button>
