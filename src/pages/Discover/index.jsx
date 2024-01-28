@@ -1,8 +1,8 @@
 import styles from './styles.module.css';
 import { TextField } from '@mui/material';
-import {ModalComponent} from './modal'
-export function Discover() {
+import { ModalComponent } from '../../components/Modals/cardView/view'; 
 
+export function Discover() {
   return (
     <main>
       <div className={styles.title_container}>
@@ -28,7 +28,7 @@ export function Discover() {
           }}
         />
       </div>
-     < ModalComponent />
+      <ModalComponent />
     </main>
   );
 }
