@@ -13,7 +13,7 @@ export function Callback() {
           const { data } = response
 
           if (data.haveAnAccount) {
-            loginSucess(data.user)
+            loginSucess(data)
           } else {
             console.log(data)
           }
