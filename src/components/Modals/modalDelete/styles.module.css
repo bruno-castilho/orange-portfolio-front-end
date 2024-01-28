@@ -1,0 +1,133 @@
+.teste {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.teste:hover {
+    font-size: larger;
+}
+
+.modal_background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1200px;
+    flex-shrink: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal_option {
+    display: flex;
+    width: 421px;
+    padding: var(--5, 40px) 42px;
+    align-items: flex-end;
+    align-content: flex-end;
+    gap: var(--4, 32px) var(--2, 16px);
+    flex-wrap: wrap;
+    border-radius: var(--none, 0px);
+    background: var(--Neutral-Colors-Neutral-60, #FCFDFF);
+}
+
+.title_delete {
+    margin-bottom: 20px;
+    width: 255px;
+    flex-shrink: 0;
+    color: var(--Neutral-Colors-Neutral-110, #515255);
+
+    /* [Orange P] Style Guide/H5 */
+    font-family: Roboto;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    /* 100% */
+}
+
+.paragraph {
+    margin-bottom: 20px;
+    width: 337px;
+    flex-shrink: 0;
+    color: var(--Neutral-Colors-Neutral-110, var(--Neutral-Colors-Neutral-110, #515255));
+
+    /* [Orange P] Style Guide/Body 1 */
+    font-family: Roboto;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px;
+    /* 100% */
+    letter-spacing: 0.5px;
+}
+
+.container_button {
+    display: flex;
+    gap: 16px;
+}
+
+.modal {
+    display: inline-flex;
+    padding: var(--2, 32px) var(--2, 48px);
+    justify-content: center;
+    align-items: center;
+    gap: var(--none, 0px);
+    border-radius: var(--none, 0px);
+    background: var(--Neutral-Colors-Neutral-60, #FCFDFF);
+}
+
+.container_conteudo {
+    display: flex;
+    padding: var(--none, 0px);
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--3, 24px);
+    border-radius: var(--none, 0px);
+}
+
+.title {
+    width: 255px;
+    color: var(--Neutral-Colors-Neutral-110, #515255);
+    text-align: center;
+
+    /* [Orange P] Style Guide/H5 */
+    font-family: Roboto;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    /* 100% */
+}
+
+.imagem {
+    display: flex;
+    width: 255px;
+    height: var(--5, 40px);
+    padding: var(--none, 0px);
+    justify-content: center;
+    align-items: center;
+    gap: var(--2, 0px);
+    border-radius: var(--none, 0px);
+}
+
+.imagem img {
+    background-color: #118822;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: var(--none, 20px);
+}
+
+.button {
+    width: 254px;
+    font-family: Roboto;
+    font-size: 15px;
+    background: var(--Color-Brand-Secundria-Secondary-100, #F52);
+}
