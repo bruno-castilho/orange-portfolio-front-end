@@ -1,12 +1,15 @@
 import IconButton from '@mui/material/IconButton'
 
 import logo from '../../../assets/logo.svg'
-import perfil from '../../../assets/perfil.svg'
+
 import { Notifications } from '@mui/icons-material'
 import { Link } from 'react-router-dom'
 import { HeaderContainer, HeaderMenuContent, HeaderUserContent } from './styles'
+import { useContext } from 'react'
+import { AuthContext } from '../../../contexts/AuthContext'
 
 export function Desktop() {
+  const { user } = useContext(AuthContext)
   return (
     <HeaderContainer>
       <HeaderMenuContent>
@@ -18,7 +21,7 @@ export function Desktop() {
       </HeaderMenuContent>
 
       <HeaderUserContent>
-        <img src={perfil} alt="" />
+        <img src={user?.url_avatar} alt="" />
         <IconButton color="inherit" size="medium">
           <Notifications />
         </IconButton>

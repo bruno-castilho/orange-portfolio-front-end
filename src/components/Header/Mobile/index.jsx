@@ -7,7 +7,6 @@ import IconButton from '@mui/material/IconButton'
 import MenuIcon from '@mui/icons-material/Menu'
 
 import logo from '../../../assets/logo.svg'
-import perfil from '../../../assets/perfil.svg'
 import { Notifications } from '@mui/icons-material'
 import Paper from '@mui/material/Paper'
 import {
@@ -24,8 +23,10 @@ import LogoutIcon from '@mui/icons-material/Logout'
 import { Link } from 'react-router-dom'
 import Popper from '@mui/material/Popper'
 import { HeaderContainer, HeaderLogo, HeaderUserContent } from './styles'
+import { AuthContext } from '../../../contexts/AuthContext'
 
 export function Mobile() {
+  const { user, handleLogout } = React.useContext(AuthContext)
   const [open, setOpen] = React.useState(false)
   const anchorRef = React.useRef(null)
 
@@ -86,7 +87,7 @@ export function Mobile() {
             </Typography>
 
             <HeaderUserContent>
-              <img src={perfil} alt="" />
+              <img src={user?.url_avatar} alt="" />
               <IconButton color="inherit" size="medium">
                 <Notifications />
               </IconButton>
@@ -159,7 +160,7 @@ export function Mobile() {
                     Descobrir
                   </MenuItem>
                   <Divider />
-                  <MenuItem onClick={handleClose}>
+                  <MenuItem onClick={handleLogout}>
                     <ListItemIcon>
                       <LogoutIcon fontSize="medium" />
                     </ListItemIcon>

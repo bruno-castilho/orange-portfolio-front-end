@@ -1,5 +1,5 @@
 import Button from '@mui/material/Button'
-import perfil from '../../assets/perfil.svg'
+
 import { TextField } from '@mui/material'
 import { CardProject } from '../../components/ProjectCard'
 import {
@@ -10,15 +10,18 @@ import {
   MyProjectProfileContent,
 } from './styles'
 import { NewProjectCard } from './NewProjectCard'
+import { useContext } from 'react'
+import { AuthContext } from '../../contexts/AuthContext'
 
 export function MyProject() {
+  const { user } = useContext(AuthContext)
   return (
     <MyProjectContainer>
       <MyProjectProfile>
         <div>
-          <img src={perfil} alt="" />
+          <img src={user?.url_avatar} alt="" />
           <MyProjectProfileContent>
-            <strong>Camila Soares</strong>
+            <strong>{`${user?.nome} ${user?.sobrenome}`}</strong>
             <p>Brasil</p>
             <Button disabled variant="contained" color="primary" size="large">
               Adicionar Projeto

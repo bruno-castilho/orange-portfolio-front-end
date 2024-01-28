@@ -5,7 +5,7 @@ export function Register() {
   return (
     <main className={styles.main}>
       <div className={styles.imagem_login}></div>
-      <FormCadastrar/>
+      <FormCadastrar />
     </main>
   )
 }
