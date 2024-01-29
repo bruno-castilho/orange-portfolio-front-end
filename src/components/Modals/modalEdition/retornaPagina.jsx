@@ -7,7 +7,7 @@ const StyledRetornaPagina = styled(Button)(({ theme }) => ({
   color: theme.palette.getContrastText('#F52'),
   backgroundColor: '#F52',
   '&:hover': {
-    backgroundColor: '#F52',
+    backgroundColor: '#CC4400',
   },
   width: '100%', 
 }));
