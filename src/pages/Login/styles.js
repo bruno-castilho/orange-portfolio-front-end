@@ -27,7 +27,6 @@ export const LoginImg = styled.img`
 
 export const LoginSection = styled.section`
   display: flex;
-  align-items: center;
   justify-content: center;
   width: 100%;
 
@@ -47,6 +46,19 @@ export const LoginSection = styled.section`
       font-size: 24px;
       line-height: 24px;
     }
+  }
+`
+
+export const LoginAlertContainer = styled.div`
+  width: 100%;
+  margin-top: 77px;
+  margin-bottom: 142px;
+  display: flex;
+  justify-content: center;
+
+  @media (max-width: 768px) {
+    margin-top: 49px;
+    margin-bottom: 56px;
   }
 `
 

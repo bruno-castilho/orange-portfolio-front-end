@@ -5,13 +5,14 @@ import imgLogin from '../../assets/img_login.svg'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Link } from 'react-router-dom'
-import { Button, TextField } from '@mui/material'
-import { useContext } from 'react'
+import { Alert, Button, TextField } from '@mui/material'
+import { useContext, useRef, useState } from 'react'
 import { AuthContext } from '../../contexts/AuthContext'
 
 import * as zod from 'zod'
 import {
   ButtonContainer,
+  LoginAlertContainer,
   LoginContainer,
   LoginContent,
   LoginForm,
@@ -19,14 +20,54 @@ import {
   LoginImg,
   LoginSection,
 } from './styles'
+import api from '../../confs/api'
 
 const LoginValidationSchema = zod.object({
   email: zod.string().email({ message: 'Digite um e-mail válido' }),
-  password: zod.string().min(1, { message: 'Informe sua senha' }),
+  password: zod
+    .string()
+    .min(6, { message: 'Sua senha contém no mínimo 6 dígitos.' }),
 })
 
 export function Login() {
-  const { handleGoogleLogin, handleLogin } = useContext(AuthContext)
+  const { loginSucess } = useContext(AuthContext)
+  const alertRef = useRef(null)
+  const [alertState, setAlertState] = useState({
+    msg: '',
+    severity: 'success',
+  })
+
+  function handleLogin(data) {
+    api
+      .post('/login', data)
+      .then((response) => {
+        loginSucess(response.data.user)
+        setAlertState({
+          msg: response.data.message,
+          severity: 'success',
+        })
+      })
+      .catch((error) => {
+        setAlertState({
+          msg: error.response.data.message,
+          severity: 'error',
+        })
+      })
+      .finally(() => {
+        alertRef.current.style.visibility = 'visible'
+      })
+  }
+
+  function handleGoogleLogin() {
+    api
+      .get(`/google/url`, {})
+      .then((response) => {
+        window.location.assign(response.data.url)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
 
   const LoginFormData = useForm({
     resolver: zodResolver(LoginValidationSchema),
@@ -36,7 +77,11 @@ export function Login() {
     },
   })
 
-  const { handleSubmit, register } = LoginFormData
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = LoginFormData
 
   return (
     <LoginContainer>
@@ -44,6 +89,19 @@ export function Login() {
         <LoginImg src={imgLogin} />
         <LoginSection>
           <div>
+            <LoginAlertContainer>
+              <Alert
+                variant="filled"
+                severity={alertState.severity}
+                sx={{
+                  visibility: 'hidden',
+                  width: '320px',
+                }}
+                ref={alertRef}
+              >
+                {alertState.msg}
+              </Alert>
+            </LoginAlertContainer>
             <h3>Entre no Orange Portfólio</h3>
             <ButtonContainer>
               <button type="button" onClick={handleGoogleLogin}>
@@ -60,6 +118,8 @@ export function Login() {
                   type="email"
                   label="Email address"
                   variant="outlined"
+                  error={errors.email?.message}
+                  helperText={errors.email?.message}
                   sx={{
                     width: '100%',
                     fontFamily: 'Roboto',
@@ -70,13 +130,12 @@ export function Login() {
                   type="password"
                   label="Password"
                   variant="outlined"
-                  InputLabelProps={{
-                    style: { color: '#000000' },
-                  }}
                   sx={{
                     width: '100%',
                     fontFamily: 'Roboto',
                   }}
+                  error={errors.password?.message}
+                  helperText={errors.password?.message}
                   {...register('password')}
                 />
                 <Button
