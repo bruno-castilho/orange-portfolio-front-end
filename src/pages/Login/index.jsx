@@ -41,7 +41,7 @@ export function Login() {
     api
       .post('/login', data)
       .then((response) => {
-        loginSucess(response.data.user)
+        loginSucess(response.data)
         setAlertState({
           msg: response.data.message,
           severity: 'success',
