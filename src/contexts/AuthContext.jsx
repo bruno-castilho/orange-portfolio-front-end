@@ -10,7 +10,6 @@ export function AuthContextProvider({ children }) {
     localStorage.getItem('@orange-portfolio:token'),
   )
 
-  console.log(token)
   const navigate = useNavigate()
 
   function loginSucess(data) {
@@ -18,28 +17,6 @@ export function AuthContextProvider({ children }) {
     setToken(data.token)
     setUser(data.user)
     navigate('/meusprojetos')
-  }
-
-  function handleLogin(data) {
-    api
-      .post('/login', data)
-      .then((response) => {
-        loginSucess(response.data)
-      })
-      .catch((error) => {
-        console.error(error)
-      })
-  }
-
-  function handleGoogleLogin() {
-    api
-      .get(`/google/url`, {})
-      .then((response) => {
-        window.location.assign(response.data.url)
-      })
-      .catch((error) => {
-        console.log(error)
-      })
   }
 
   function handleLogout() {
@@ -85,8 +62,6 @@ export function AuthContextProvider({ children }) {
       value={{
         user,
         token,
-        handleLogin,
-        handleGoogleLogin,
         handleLogout,
         loginSucess,
       }}
