@@ -16,7 +16,7 @@ export default function RetornaPagina() {
   return (
     <Stack spacing={2} direction="row" component="form">
       <StyledRetornaPagina variant="contained">
-        Voltar para Projetos
+        Voltar para o Projetos
       </StyledRetornaPagina>
     </Stack>
   );

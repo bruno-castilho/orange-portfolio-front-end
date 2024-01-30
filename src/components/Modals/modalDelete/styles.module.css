@@ -131,3 +131,10 @@
     font-size: 15px;
     background: var(--Color-Brand-Secundria-Secondary-100, #F52);
 }
+
+@media (max-width: 768px) {
+    
+    .modal{
+        width: 312px;
+    }  
+}
