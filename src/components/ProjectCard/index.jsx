@@ -1,6 +1,5 @@
 import Chip from '@mui/material/Chip'
 
-import img from '../../assets/image.png'
 import perfil from '../../assets/perfil.svg'
 
 import { IconButton, Menu, MenuItem } from '@mui/material'
@@ -14,7 +13,7 @@ import {
   ProjectCardInfoTags,
 } from './styles'
 
-export function CardProject({ withMenu = false }) {
+export function CardProject({ withMenu = false, project }) {
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
 
@@ -25,9 +24,13 @@ export function CardProject({ withMenu = false }) {
     setAnchorEl(null)
   }
 
+  const data = new Date(project.updatedAt)
+  const month = ('0' + (data.getUTCMonth() + 1)).slice(-2)
+  const year = ('' + data.getUTCFullYear()).slice(-2)
+
   return (
     <div>
-      <ProjectCardImg img={img}>
+      <ProjectCardImg img={project.arquivo}>
         {withMenu && (
           <>
             <MenuButtonContainer>
@@ -107,14 +110,23 @@ export function CardProject({ withMenu = false }) {
         <ProjectCardInfoPublication>
           <img src={perfil} alt="" />
           <div>
-            <p>Camila Soares</p>
-            <span>12/23</span>
+            <p>{`${project['Usuario.nome']} ${project['Usuario.sobrenome']}`}</p>
+            <span>
+              {month}/{year}
+            </span>
           </div>
         </ProjectCardInfoPublication>
 
         <ProjectCardInfoTags>
-          <Chip label="UX" color="default" size="medium" variant="filled" />
-          <Chip label="Web" color="default" size="medium" variant="filled" />
+          {project.tags.split(',').map((tag) => (
+            <Chip
+              key={tag.trim()}
+              label={tag.trim()}
+              color="default"
+              size="medium"
+              variant="filled"
+            />
+          ))}
         </ProjectCardInfoTags>
       </ProjectCardInfo>
     </div>
