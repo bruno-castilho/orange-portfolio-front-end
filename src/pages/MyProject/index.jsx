@@ -20,8 +20,9 @@ export function MyProject() {
   const [projectsFiltered, setProjectsFiltered] = useState([])
 
   useEffect(() => {
+    const params = { token }
     api
-      .get('/projetos/user', { token })
+      .get('/projetos/user', { params })
       .then((response) => {
         setProjects(response.data)
       })
