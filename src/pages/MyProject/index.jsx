@@ -1,6 +1,5 @@
 import Button from '@mui/material/Button'
 
-import { TextField } from '@mui/material'
 import { CardProject } from '../../components/ProjectCard'
 import {
   MyProjectContainer,
@@ -10,11 +9,31 @@ import {
   MyProjectProfileContent,
 } from './styles'
 import { NewProjectCard } from './NewProjectCard'
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../contexts/AuthContext'
+import api from '../../confs/api'
+import { Filter } from '../../components/Filter'
 
 export function MyProject() {
-  const { user } = useContext(AuthContext)
+  const { user, token } = useContext(AuthContext)
+  const [projects, setProjects] = useState([])
+  const [projectsFiltered, setProjectsFiltered] = useState([])
+
+  useEffect(() => {
+    api
+      .get('/projetos/user', { token })
+      .then((response) => {
+        setProjects(response.data)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }, [token])
+
+  function teste(data) {
+    setProjectsFiltered(data)
+  }
+
   return (
     <MyProjectContainer>
       <MyProjectProfile>
@@ -34,27 +53,16 @@ export function MyProject() {
         <MyProjectFilter>
           <div>
             <h1>Meus Projetos</h1>
-            <TextField
-              fullWidth
-              label="Buscar Tags"
-              variant="outlined"
-              size="medium"
-            />
+            <Filter data={projects} datReturnFunc={teste} />
           </div>
         </MyProjectFilter>
 
         <MyProjectList>
-          <NewProjectCard />
+          {!projects && <NewProjectCard />}
 
-          <CardProject withMenu />
-
-          <CardProject withMenu />
-
-          <CardProject withMenu />
-
-          <CardProject withMenu />
-
-          <CardProject withMenu />
+          {projectsFiltered?.map((project) => (
+            <CardProject key={project.id} withMenu project={project} />
+          ))}
         </MyProjectList>
       </section>
     </MyProjectContainer>
