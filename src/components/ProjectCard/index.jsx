@@ -40,8 +40,6 @@ export function CardProject({ withMenu = false, project }) {
             </MenuButtonContainer>
 
             <Menu
-              id="demo-positioned-menu"
-              aria-labelledby="demo-positioned-button"
               anchorEl={anchorEl}
               open={open}
               onClose={handleClose}
@@ -56,7 +54,7 @@ export function CardProject({ withMenu = false, project }) {
               MenuListProps={{
                 sx: {
                   width: '208px',
-                  height: '104px',
+                  minHeight: '104px',
                   borderRadius: '8px',
                   background: 'var(--Neutral-Colors-Neutral-60, #FCFDFF)',
                   boxShadow: '2px 2px 8px 0px rgba(0, 0, 0, 0.30)',
