@@ -1,5 +1,3 @@
-import styles from './styles.module.css'
-import { TextField } from '@mui/material'
 import { ModalComponent } from '../../components/Modals/cardView/view'
 import { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../contexts/AuthContext'
