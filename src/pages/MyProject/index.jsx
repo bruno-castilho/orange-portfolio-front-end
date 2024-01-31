@@ -31,7 +31,7 @@ export function MyProject() {
       })
   }, [token])
 
-  function teste(data) {
+  function datReturnFunc(data) {
     setProjectsFiltered(data)
   }
 
@@ -54,7 +54,7 @@ export function MyProject() {
         <MyProjectFilter>
           <div>
             <h1>Meus Projetos</h1>
-            <Filter data={projects} datReturnFunc={teste} />
+            <Filter data={projects} datReturnFunc={datReturnFunc} />
           </div>
         </MyProjectFilter>
 
