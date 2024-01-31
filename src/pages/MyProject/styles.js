@@ -62,8 +62,7 @@ export const MyProjectProfileContent = styled.div`
   }
 
   & > p {
-    color: var(--color-neutral-130);
-    opacity: 0.5;
+    color: rgb(11, 12, 13, 0.5);
 
     font-family: Roboto;
     font-size: 16px;

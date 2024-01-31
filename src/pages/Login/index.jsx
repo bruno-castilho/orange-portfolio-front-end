@@ -5,7 +5,19 @@ import imgLogin from '../../assets/img_login.svg'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Link } from 'react-router-dom'
-import { Alert, Button, TextField } from '@mui/material'
+import {
+  Alert,
+  Button,
+  FormControl,
+  IconButton,
+  InputAdornment,
+  InputLabel,
+  OutlinedInput,
+  TextField,
+} from '@mui/material'
+
+import { Visibility, VisibilityOff } from '@mui/icons-material'
+
 import { useContext, useRef, useState } from 'react'
 import { AuthContext } from '../../contexts/AuthContext'
 
@@ -30,6 +42,7 @@ const LoginValidationSchema = zod.object({
 })
 
 export function Login() {
+  const [showPassword, setShowPassword] = useState(false)
   const { loginSucess } = useContext(AuthContext)
   const alertRef = useRef(null)
   const [alertState, setAlertState] = useState({
@@ -83,6 +96,12 @@ export function Login() {
     formState: { errors },
   } = LoginFormData
 
+  const handleClickShowPassword = () => setShowPassword((show) => !show)
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault()
+  }
+
   return (
     <LoginContainer>
       <LoginContent>
@@ -126,18 +145,38 @@ export function Login() {
                   }}
                   {...register('email')}
                 />
-                <TextField
-                  type="password"
-                  label="Password"
+                <FormControl
                   variant="outlined"
                   sx={{
                     width: '100%',
                     fontFamily: 'Roboto',
                   }}
-                  error={errors.password?.message}
-                  helperText={errors.password?.message}
-                  {...register('password')}
-                />
+                >
+                  <InputLabel htmlFor="outlined-adornment-password">
+                    Password
+                  </InputLabel>
+                  <OutlinedInput
+                    id="outlined-adornment-password"
+                    type={showPassword ? 'text' : 'password'}
+                    label="Password"
+                    variant="outlined"
+                    error={errors.password?.message}
+                    helperText={errors.password?.message}
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowPassword}
+                          onMouseDown={handleMouseDownPassword}
+                          edge="end"
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                    {...register('password')}
+                  />
+                </FormControl>
                 <Button
                   variant="contained"
                   color="primary"

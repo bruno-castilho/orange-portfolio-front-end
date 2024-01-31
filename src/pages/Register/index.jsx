@@ -9,7 +9,15 @@ import {
   RegisterAlertContainer,
 } from './styles'
 import imgRegister from '../../assets/img_cadastro.svg'
-import { Button, TextField } from '@mui/material'
+import {
+  Button,
+  FormControl,
+  IconButton,
+  InputAdornment,
+  InputLabel,
+  OutlinedInput,
+  TextField,
+} from '@mui/material'
 import Alert from '@mui/material/Alert'
 
 import { useForm } from 'react-hook-form'
@@ -19,6 +27,7 @@ import * as zod from 'zod'
 import { useLocation } from 'react-router-dom'
 import api from '../../confs/api'
 import { useRef, useState } from 'react'
+import { Visibility, VisibilityOff } from '@mui/icons-material'
 
 const RegisterValidationSchema = zod.object({
   nome: zod.string().min(1, { message: 'Digite seu nome' }),
@@ -31,6 +40,7 @@ const RegisterValidationSchema = zod.object({
 })
 
 export function Register() {
+  const [showPassword, setShowPassword] = useState(false)
   const location = useLocation()
   const queryParams = new URLSearchParams(location.search)
   const alertRef = useRef(null)
@@ -78,6 +88,11 @@ export function Register() {
     formState: { errors },
   } = RegisterFormData
 
+  const handleClickShowPassword = () => setShowPassword((show) => !show)
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault()
+  }
   return (
     <RegisterContainer>
       <RegisterContent>
@@ -141,18 +156,38 @@ export function Register() {
                   helperText={errors.email?.message}
                   {...register('email')}
                 />
-                <TextField
-                  type="password"
-                  label="Password"
+                <FormControl
                   variant="outlined"
-                  error={errors.senha?.message}
-                  helperText={errors.senha?.message}
                   sx={{
                     width: '100%',
                     fontFamily: 'Roboto',
                   }}
-                  {...register('senha')}
-                />
+                >
+                  <InputLabel htmlFor="outlined-adornment-password">
+                    Password
+                  </InputLabel>
+                  <OutlinedInput
+                    id="outlined-adornment-password"
+                    type={showPassword ? 'text' : 'password'}
+                    label="Password"
+                    variant="outlined"
+                    error={errors.password?.message}
+                    helperText={errors.password?.message}
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowPassword}
+                          onMouseDown={handleMouseDownPassword}
+                          edge="end"
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                    {...register('senha')}
+                  />
+                </FormControl>
                 <Button
                   variant="contained"
                   color="primary"
