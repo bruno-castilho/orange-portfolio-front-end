@@ -113,7 +113,7 @@ export function Mobile() {
                 variant="elevation"
                 elevation={10}
                 square={false}
-                sx={{ width: '220px', marginTop: '8px' }}
+                sx={{ width: '220px', marginTop: '11px' }}
               >
                 <List>
                   <ListItem>
