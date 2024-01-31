@@ -59,7 +59,7 @@ export function MyProject() {
         </MyProjectFilter>
 
         <MyProjectList>
-          {!projects && <NewProjectCard />}
+          {!projects.length && <NewProjectCard />}
 
           {projectsFiltered?.map((project) => (
             <CardProject key={project.id} withMenu project={project} />
