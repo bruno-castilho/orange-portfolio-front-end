@@ -61,6 +61,7 @@ export function Mobile() {
             flexDirection: 'column',
             alignItems: 'flexStart',
             background: 'var(--color-principal-100)',
+            borderRadius: '4px',
           }}
         >
           <Toolbar
