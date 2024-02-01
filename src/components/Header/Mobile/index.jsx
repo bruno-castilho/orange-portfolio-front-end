@@ -99,7 +99,7 @@ export function Mobile() {
           anchorEl={anchorRef.current}
           role={undefined}
           transition
-          disablePortal
+          sx={{ zIndex: '2000' }}
         >
           {({ TransitionProps, placement }) => (
             <Grow
