@@ -84,6 +84,7 @@ export function MyProject() {
       .post('/projetos', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
+          Cookie: token,
         },
       })
       .then((response) => {
