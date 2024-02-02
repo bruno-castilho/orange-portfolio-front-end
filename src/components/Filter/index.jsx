@@ -20,7 +20,7 @@ export function Filter({ data, datReturnFunc }) {
     })
 
     datReturnFunc(dataFiltered)
-  }, [data, datReturnFunc, value])
+  }, [data, value])
 
   return (
     <TextField
