@@ -1,7 +1,5 @@
 import Chip from '@mui/material/Chip'
 
-import perfil from '../../assets/perfil.svg'
-
 import { IconButton, Menu, MenuItem } from '@mui/material'
 import EditIcon from '@mui/icons-material/Edit'
 import React from 'react'
@@ -13,7 +11,14 @@ import {
   ProjectCardInfoTags,
 } from './styles'
 
-export function CardProject({ withMenu = false, project }) {
+const hostBackEnd = import.meta.env.VITE_BASE_URL
+
+export function CardProject({
+  withMenu = false,
+  project,
+  handleDeleteProject,
+  handleEditProject,
+}) {
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
 
@@ -30,7 +35,7 @@ export function CardProject({ withMenu = false, project }) {
 
   return (
     <div>
-      <ProjectCardImg img={project.arquivo}>
+      <ProjectCardImg img={`${hostBackEnd}${project.arquivo}`}>
         {withMenu && (
           <>
             <MenuButtonContainer>
@@ -65,7 +70,7 @@ export function CardProject({ withMenu = false, project }) {
               }}
             >
               <MenuItem
-                onClick={handleClose}
+                onClick={(handleClose, () => handleEditProject(project))}
                 sx={{
                   fontFamily: 'Roboto',
                   fontSize: '16px',
@@ -83,7 +88,7 @@ export function CardProject({ withMenu = false, project }) {
                 Editar
               </MenuItem>
               <MenuItem
-                onClick={handleClose}
+                onClick={(handleClose, handleDeleteProject)}
                 sx={{
                   fontFamily: 'Roboto',
                   fontSize: '16px',
@@ -106,7 +111,7 @@ export function CardProject({ withMenu = false, project }) {
 
       <ProjectCardInfo>
         <ProjectCardInfoPublication>
-          <img src={perfil} alt="" />
+          <img src={project['Usuario.url_avatar']} alt="" />
           <div>
             <p>{`${project['Usuario.nome']} ${project['Usuario.sobrenome']}`}</p>
             <span>
