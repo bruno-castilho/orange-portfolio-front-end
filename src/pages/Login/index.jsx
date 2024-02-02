@@ -9,6 +9,7 @@ import {
   Alert,
   Button,
   FormControl,
+  FormHelperText,
   IconButton,
   InputAdornment,
   InputLabel,
@@ -176,6 +177,10 @@ export function Login() {
                     }
                     {...register('password')}
                   />
+
+                  <FormHelperText error id="outlined-adornment-password">
+                    {errors.password?.message}
+                  </FormHelperText>
                 </FormControl>
                 <Button
                   variant="contained"

@@ -12,6 +12,7 @@ import imgRegister from '../../assets/img_cadastro.svg'
 import {
   Button,
   FormControl,
+  FormHelperText,
   IconButton,
   InputAdornment,
   InputLabel,
@@ -171,8 +172,7 @@ export function Register() {
                     type={showPassword ? 'text' : 'password'}
                     label="Password"
                     variant="outlined"
-                    error={errors.password?.message}
-                    helperText={errors.password?.message}
+                    error={errors.senha?.message}
                     endAdornment={
                       <InputAdornment position="end">
                         <IconButton
@@ -187,6 +187,9 @@ export function Register() {
                     }
                     {...register('senha')}
                   />
+                  <FormHelperText error id="outlined-adornment-password">
+                    {errors.senha?.message}
+                  </FormHelperText>
                 </FormControl>
                 <Button
                   variant="contained"
