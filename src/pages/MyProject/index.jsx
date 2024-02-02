@@ -81,10 +81,9 @@ export function MyProject() {
     formData.append('descricao', data.descricao)
 
     api
-      .post('/projetos', formData, {
+      .post(`/projetos?token=${token}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
-          Cookie: token,
         },
       })
       .then((response) => {

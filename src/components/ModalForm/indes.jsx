@@ -47,6 +47,10 @@ export function ModalForm({
       onClose={closeModal}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
+      disableScrollLock={false}
+      sx={{
+        overflow: 'scroll',
+      }}
     >
       <Box
         sx={{
@@ -60,6 +64,7 @@ export function ModalForm({
           boxShadow: 24,
           padding: '16px 23px 40px 23px',
           '@media (max-width: 768px)': {
+            marginTop: '148px',
             width: '312px',
             height: '859px',
           },
