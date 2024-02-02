@@ -1,9 +1,9 @@
 import CollectionsIcon from '@mui/icons-material/Collections'
 import { NewProjectCardContainer } from './styles'
 
-export function NewProjectCard() {
+export function NewProjectCard({ handleCreateProject }) {
   return (
-    <NewProjectCardContainer>
+    <NewProjectCardContainer onClick={handleCreateProject}>
       <div>
         <CollectionsIcon />
       </div>
