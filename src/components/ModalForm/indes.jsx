@@ -27,7 +27,7 @@ export function ModalForm({
     if (doIt === 'create') {
       await createProject(data)
     } else if (doIt === 'edit') {
-      editProject(data)
+      await editProject(data)
     }
   }
   const modalTitle = doIt === 'edit' ? 'Editar projeto ' : 'Adicionar Projeto'

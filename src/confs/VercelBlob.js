@@ -1,10 +1,10 @@
-import { put } from '@vercel/blob'
+import { put, del } from '@vercel/blob'
 
 export const config = {
   runtime: 'edge',
 }
 
-export default async function upload(formData) {
+export async function upload(formData) {
   const file = formData.get('file')
 
   const blob = await put(file.name, file, {
@@ -13,4 +13,10 @@ export default async function upload(formData) {
   })
 
   return blob
+}
+
+export async function deleteFile(url) {
+  await del(url, {
+    token: import.meta.env.VITE_BLOB_READ_WRITE_TOKEN,
+  })
 }
