@@ -18,6 +18,7 @@ import { ModalForm } from '../../components/ModalForm/indes'
 import { FormProvider, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as zod from 'zod'
+import upload from '../../confs/upload'
 
 const ProjectValidationSchema = zod.object({
   titulo: zod.string().min(1, { message: 'Digite o titulo do projeto' }),
@@ -72,27 +73,30 @@ export function MyProject() {
     setOpen(false)
   }
 
-  function createProject(data) {
+  async function createProject(data) {
     const formData = new FormData()
-    formData.append('arquivo', data.file[0])
-    formData.append('titulo', data.titulo)
-    formData.append('tags', data.tags)
-    formData.append('link', data.link)
-    formData.append('descricao', data.descricao)
+    formData.append('file', data.file[0])
+    const resposta = await upload(formData)
+    console.log(resposta)
+    //
+    // formData.append('titulo', data.titulo)
+    // formData.append('tags', data.tags)
+    // formData.append('link', data.link)
+    // formData.append('descricao', data.descricao)
 
-    api
-      .post(`/projetos?token=${token}`, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      })
-      .then((response) => {
-        setProjects((project) => [response.data, ...project])
-        closeModal()
-      })
-      .catch((error) => {
-        console.log(error)
-      })
+    // api
+    //   .post(`/projetos?token=${token}`, formData, {
+    //     headers: {
+    //       'Content-Type': 'multipart/form-data',
+    //     },
+    //   })
+    //   .then((response) => {
+    //     setProjects((project) => [response.data, ...project])
+    //     closeModal()
+    //   })
+    //   .catch((error) => {
+    //     console.log(error)
+    //   })
   }
 
   function editProject(data) {
