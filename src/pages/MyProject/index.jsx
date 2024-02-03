@@ -168,7 +168,9 @@ export function MyProject() {
   async function deleteProject(project) {
     if (project.arquivo) deleteFile(project.arquivo)
 
-    await api.delete(`/projetos/${project.id}`, {})
+    const params = { token }
+
+    await api.delete(`/projetos/${project.id}`, { params })
 
     const newProjects = projects.filter((p) => p.id !== project.id)
 
