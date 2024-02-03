@@ -18,7 +18,7 @@ import { ModalForm } from '../../components/ModalForm/indes'
 import { FormProvider, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as zod from 'zod'
-import upload from '../../confs/upload'
+import { deleteFile, upload } from '../../confs/VercelBlob'
 
 const ProjectValidationSchema = zod.object({
   titulo: zod.string().min(1, { message: 'Digite o titulo do projeto' }),
@@ -94,7 +94,7 @@ export function MyProject() {
     api
       .post(`/projetos`, params)
       .then((response) => {
-        setProjects((project) => [response.data, ...project])
+        setProjects((projects) => [response.data, ...projects])
         closeModal()
       })
       .catch((error) => {
@@ -102,8 +102,52 @@ export function MyProject() {
       })
   }
 
-  function editProject(data) {
-    console.log(data)
+  async function editProject(data) {
+    let arquivo = data.urlImg
+    if (data.file.length) {
+      if (arquivo) deleteFile(arquivo)
+
+      const formData = new FormData()
+      formData.append('file', data.file[0])
+      const resposta = await upload(formData)
+      arquivo = resposta.url
+    }
+
+    const params = {
+      titulo: data.titulo,
+      tags: data.tags,
+      link: data.link,
+      descricao: data.descricao,
+      arquivo,
+      token,
+    }
+
+    api
+      .put(`/projetos/${data.id}`, params)
+      .then(() => {
+        const projectIndex = projects.findIndex(
+          (project) => project.id === data.id,
+        )
+
+        const newProject = {
+          ...projects[projectIndex],
+          titulo: data.titulo,
+          tags: data.tags,
+          link: data.link,
+          descricao: data.descricao,
+          arquivo,
+        }
+
+        const newProjects = [...projects]
+        newProjects.splice(projectIndex, 1)
+
+        setProjects([newProject, ...newProjects])
+
+        closeModal()
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   }
 
   function deleteProject(id) {
