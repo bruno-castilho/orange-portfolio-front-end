@@ -2,7 +2,7 @@ import { Box, Button, Modal } from '@mui/material'
 import { ModalDeleteContainer } from './styles'
 
 export function ModalDelete({
-  open,
+  open = false,
   handleClose,
   handleDelete,
   projectToDelete,

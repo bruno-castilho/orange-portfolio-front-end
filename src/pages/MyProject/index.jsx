@@ -75,7 +75,6 @@ export function MyProject() {
   const openModalForm = () => setOpenModalForm(true)
 
   function closeModalForm() {
-    reset()
     setOpenModalForm(false)
   }
   const OpenModalSuccess = () => setOpenModalSuccess(true)
@@ -181,11 +180,13 @@ export function MyProject() {
   }
 
   function handleCreateProject() {
+    reset()
     setDoIt('create')
     openModalForm()
   }
 
   function handleEditProject(project) {
+    reset()
     setDoIt('edit')
     setValue('id', project.id)
     setValue('titulo', project.titulo)
@@ -237,7 +238,7 @@ export function MyProject() {
           {projectsFiltered?.map((project) => (
             <CardProject
               key={project.id}
-              withMenu
+              isMyProject
               project={project}
               handleDeleteProject={handleDeleteProject}
               handleEditProject={handleEditProject}
@@ -248,6 +249,7 @@ export function MyProject() {
       <FormProvider {...ProjectFormData}>
         <ModalForm
           open={IsOpenModalForm}
+          openModal={openModalForm}
           closeModal={closeModalForm}
           createProject={createProject}
           editProject={editProject}

@@ -12,10 +12,11 @@ import {
 } from './styles'
 
 export function CardProject({
-  withMenu = false,
+  isMyProject = false,
   project,
   handleDeleteProject,
   handleEditProject,
+  onClick,
 }) {
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
@@ -32,9 +33,12 @@ export function CardProject({
   const year = ('' + data.getUTCFullYear()).slice(-2)
 
   return (
-    <div>
+    <div
+      style={{ cursor: isMyProject ? 'default' : 'pointer' }}
+      onClick={onClick}
+    >
       <ProjectCardImg img={project.arquivo}>
-        {withMenu && (
+        {isMyProject && (
           <>
             <MenuButtonContainer>
               <IconButton color="inherit" size="medium" onClick={handleClick}>
@@ -114,7 +118,7 @@ export function CardProject({
       </ProjectCardImg>
 
       <ProjectCardInfo>
-        <ProjectCardInfoPublication>
+        <ProjectCardInfoPublication isMyProject={isMyProject}>
           <img src={project['Usuario.url_avatar']} alt="" />
           <div>
             <p>{`${project['Usuario.nome']} ${project['Usuario.sobrenome']}`}</p>
