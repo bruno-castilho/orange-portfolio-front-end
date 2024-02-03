@@ -20,6 +20,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import * as zod from 'zod'
 import { deleteFile, upload } from '../../confs/VercelBlob'
 import { ModalSuccess } from '../../components/ModalSuccess'
+import { ModalDelete } from '../../components/ModalDelete'
 
 const ProjectValidationSchema = zod.object({
   titulo: zod.string().min(1, { message: 'Digite o titulo do projeto' }),
@@ -36,8 +37,10 @@ export function MyProject() {
   const [projects, setProjects] = useState([])
   const [projectsFiltered, setProjectsFiltered] = useState([])
   const [IsOpenModalForm, setOpenModalForm] = useState(false)
-  const [isOpenModalSuccess, setOpenModalSuccess] = useState(false)
+  const [IsOpenModalSuccess, setOpenModalSuccess] = useState(false)
+  const [isOpenModalDelete, setIsOpenModalDelete] = useState(false)
   const [messageModalSuccess, setMessageModalSuccess] = useState('')
+  const [projectToDelete, setProjectToDelete] = useState(null)
   const [doIt, setDoIt] = useState('')
 
   const ProjectFormData = useForm({
@@ -77,6 +80,9 @@ export function MyProject() {
   }
   const OpenModalSuccess = () => setOpenModalSuccess(true)
   const CloseModalSuccess = () => setOpenModalSuccess(false)
+
+  const OpenModalDelete = () => setIsOpenModalDelete(true)
+  const CloseModalDelete = () => setIsOpenModalDelete(false)
 
   async function createProject(data) {
     let arquivo = ''
@@ -159,8 +165,17 @@ export function MyProject() {
       })
   }
 
-  function deleteProject(id) {
-    console.log(id)
+  async function deleteProject(project) {
+    if (project.arquivo) deleteFile(project.arquivo)
+
+    await api.delete(`/projetos/${project.id}`, {})
+
+    const newProjects = projects.filter((p) => p.id !== project.id)
+
+    setProjects(newProjects)
+    CloseModalDelete()
+    setMessageModalSuccess('Projeto deletado com sucesso!')
+    OpenModalSuccess()
   }
 
   function handleCreateProject() {
@@ -177,6 +192,11 @@ export function MyProject() {
     setValue('descricao', project.descricao)
     setValue('urlImg', project.arquivo)
     openModalForm()
+  }
+
+  function handleDeleteProject(project) {
+    setProjectToDelete(project)
+    OpenModalDelete()
   }
 
   return (
@@ -217,7 +237,7 @@ export function MyProject() {
               key={project.id}
               withMenu
               project={project}
-              handleDeleteProject={deleteProject}
+              handleDeleteProject={handleDeleteProject}
               handleEditProject={handleEditProject}
             />
           ))}
@@ -233,8 +253,14 @@ export function MyProject() {
         />
         <ModalSuccess
           message={messageModalSuccess}
-          open={isOpenModalSuccess}
+          open={IsOpenModalSuccess}
           handleClose={CloseModalSuccess}
+        />
+        <ModalDelete
+          open={isOpenModalDelete}
+          handleClose={CloseModalDelete}
+          handleDelete={deleteProject}
+          projectToDelete={projectToDelete}
         />
       </FormProvider>
     </MyProjectContainer>

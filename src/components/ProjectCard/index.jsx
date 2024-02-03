@@ -90,7 +90,7 @@ export function CardProject({
               </MenuItem>
               <MenuItem
                 onClick={() => {
-                  handleDeleteProject()
+                  handleDeleteProject(project)
                   handleClose()
                 }}
                 sx={{
