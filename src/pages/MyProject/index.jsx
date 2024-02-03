@@ -19,6 +19,7 @@ import { FormProvider, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as zod from 'zod'
 import { deleteFile, upload } from '../../confs/VercelBlob'
+import { ModalSuccess } from '../../components/ModalSuccess'
 
 const ProjectValidationSchema = zod.object({
   titulo: zod.string().min(1, { message: 'Digite o titulo do projeto' }),
@@ -34,7 +35,9 @@ export function MyProject() {
   const { user, token } = useContext(AuthContext)
   const [projects, setProjects] = useState([])
   const [projectsFiltered, setProjectsFiltered] = useState([])
-  const [open, setOpen] = useState(false)
+  const [IsOpenModalForm, setOpenModalForm] = useState(false)
+  const [isOpenModalSuccess, setOpenModalSuccess] = useState(false)
+  const [messageModalSuccess, setMessageModalSuccess] = useState('')
   const [doIt, setDoIt] = useState('')
 
   const ProjectFormData = useForm({
@@ -66,12 +69,14 @@ export function MyProject() {
     setProjectsFiltered(data)
   }
 
-  const openModal = () => setOpen(true)
+  const openModalForm = () => setOpenModalForm(true)
 
-  function closeModal() {
+  function closeModalForm() {
     reset()
-    setOpen(false)
+    setOpenModalForm(false)
   }
+  const OpenModalSuccess = () => setOpenModalSuccess(true)
+  const CloseModalSuccess = () => setOpenModalSuccess(false)
 
   async function createProject(data) {
     let arquivo = ''
@@ -95,7 +100,9 @@ export function MyProject() {
       .post(`/projetos`, params)
       .then((response) => {
         setProjects((projects) => [response.data, ...projects])
-        closeModal()
+        closeModalForm()
+        setMessageModalSuccess('Projeto adicionado com sucesso!')
+        OpenModalSuccess()
       })
       .catch((error) => {
         console.log(error)
@@ -143,7 +150,9 @@ export function MyProject() {
 
         setProjects([newProject, ...newProjects])
 
-        closeModal()
+        closeModalForm()
+        setMessageModalSuccess('Edição concluída com sucesso!')
+        OpenModalSuccess()
       })
       .catch((error) => {
         console.log(error)
@@ -156,7 +165,7 @@ export function MyProject() {
 
   function handleCreateProject() {
     setDoIt('create')
-    openModal()
+    openModalForm()
   }
 
   function handleEditProject(project) {
@@ -167,7 +176,7 @@ export function MyProject() {
     setValue('link', project.link)
     setValue('descricao', project.descricao)
     setValue('urlImg', project.arquivo)
-    openModal()
+    openModalForm()
   }
 
   return (
@@ -216,11 +225,16 @@ export function MyProject() {
       </section>
       <FormProvider {...ProjectFormData}>
         <ModalForm
-          open={open}
-          closeModal={closeModal}
+          open={IsOpenModalForm}
+          closeModal={closeModalForm}
           createProject={createProject}
           editProject={editProject}
           doIt={doIt}
+        />
+        <ModalSuccess
+          message={messageModalSuccess}
+          open={isOpenModalSuccess}
+          handleClose={CloseModalSuccess}
         />
       </FormProvider>
     </MyProjectContainer>

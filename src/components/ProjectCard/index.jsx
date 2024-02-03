@@ -68,7 +68,10 @@ export function CardProject({
               }}
             >
               <MenuItem
-                onClick={(handleClose, () => handleEditProject(project))}
+                onClick={() => {
+                  handleEditProject(project)
+                  handleClose()
+                }}
                 sx={{
                   fontFamily: 'Roboto',
                   fontSize: '16px',
@@ -86,7 +89,10 @@ export function CardProject({
                 Editar
               </MenuItem>
               <MenuItem
-                onClick={(handleClose, handleDeleteProject)}
+                onClick={() => {
+                  handleDeleteProject()
+                  handleClose()
+                }}
                 sx={{
                   fontFamily: 'Roboto',
                   fontSize: '16px',
