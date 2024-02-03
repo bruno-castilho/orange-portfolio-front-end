@@ -109,6 +109,7 @@ export const MyProjectFilter = styled.div`
 `
 
 export const MyProjectList = styled.div`
+  margin-bottom: 32px;
   display: flex;
   justify-content: left;
   flex-wrap: wrap;

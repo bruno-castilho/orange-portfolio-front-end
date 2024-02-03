@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const HeaderContainer = styled.div`
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     & {
       display: none;
     }

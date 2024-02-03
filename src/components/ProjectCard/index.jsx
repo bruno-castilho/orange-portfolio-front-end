@@ -129,7 +129,7 @@ export function CardProject({
         </ProjectCardInfoPublication>
 
         <ProjectCardInfoTags>
-          {project.tags.split(',').map((tag) => (
+          {project.tags !== '' && project.tags.split(',').map((tag) => (
             <Chip
               key={tag.trim()}
               label={tag.trim()}
