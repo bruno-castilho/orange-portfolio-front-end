@@ -11,8 +11,6 @@ import {
   ProjectCardInfoTags,
 } from './styles'
 
-const hostBackEnd = import.meta.env.VITE_BASE_URL
-
 export function CardProject({
   withMenu = false,
   project,
@@ -35,7 +33,7 @@ export function CardProject({
 
   return (
     <div>
-      <ProjectCardImg img={`${hostBackEnd}${project.arquivo}`}>
+      <ProjectCardImg img={project.arquivo}>
         {withMenu && (
           <>
             <MenuButtonContainer>

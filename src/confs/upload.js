@@ -4,10 +4,12 @@ export const config = {
   runtime: 'edge',
 }
 
-export default async function upload(request) {
-  const form = await request.formData()
-  const file = form.get('file')
-  const blob = await put(file.name, file, { access: 'public' })
+export default async function upload(formData) {
+  const file = formData.get('file')
 
-  return Response.json(blob)
+  const blob = await put(file.name, file, {
+    access: 'public',
+  })
+
+  return blob
 }

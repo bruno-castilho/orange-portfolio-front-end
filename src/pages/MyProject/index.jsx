@@ -74,29 +74,32 @@ export function MyProject() {
   }
 
   async function createProject(data) {
-    const formData = new FormData()
-    formData.append('file', data.file[0])
-    const resposta = await upload(formData)
-    console.log(resposta)
-    //
-    // formData.append('titulo', data.titulo)
-    // formData.append('tags', data.tags)
-    // formData.append('link', data.link)
-    // formData.append('descricao', data.descricao)
+    let arquivo = ''
+    if (data.file.length) {
+      const formData = new FormData()
+      formData.append('file', data.file[0])
+      const resposta = await upload(formData)
+      arquivo = resposta.url
+    }
 
-    // api
-    //   .post(`/projetos?token=${token}`, formData, {
-    //     headers: {
-    //       'Content-Type': 'multipart/form-data',
-    //     },
-    //   })
-    //   .then((response) => {
-    //     setProjects((project) => [response.data, ...project])
-    //     closeModal()
-    //   })
-    //   .catch((error) => {
-    //     console.log(error)
-    //   })
+    const params = {
+      titulo: data.titulo,
+      tags: data.tags,
+      link: data.link,
+      descricao: data.descricao,
+      arquivo,
+      token,
+    }
+
+    api
+      .post(`/projetos`, params)
+      .then((response) => {
+        setProjects((project) => [response.data, ...project])
+        closeModal()
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   }
 
   function editProject(data) {

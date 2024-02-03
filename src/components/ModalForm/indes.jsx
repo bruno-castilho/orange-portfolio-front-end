@@ -9,8 +9,6 @@ import {
 import { Box, Button, Modal, TextField } from '@mui/material'
 import { useFormContext } from 'react-hook-form'
 
-const hostBackEnd = import.meta.env.VITE_BASE_URL
-
 export function ModalForm({
   open = false,
   closeModal,
@@ -36,10 +34,7 @@ export function ModalForm({
 
   const file = watch('file')
   const urlImg = watch('urlImg')
-  const img =
-    file && file.length !== 0
-      ? URL.createObjectURL(file[0])
-      : `${hostBackEnd}${urlImg}`
+  const img = file && file.length !== 0 ? URL.createObjectURL(file[0]) : urlImg
 
   return (
     <Modal
@@ -78,7 +73,7 @@ export function ModalForm({
               <UploadButton img={img}>
                 <div
                   style={{
-                    display: img !== hostBackEnd ? 'none' : 'block',
+                    display: img ? 'none' : 'block',
                   }}
                 >
                   <div>
