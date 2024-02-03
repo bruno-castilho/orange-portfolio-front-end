@@ -126,7 +126,7 @@ export function Mobile() {
                             color: 'var(--text-primary), rgba(0, 0, 0, 0.87)',
                           }}
                         >
-                          Camila
+                          {user?.nome}
                         </Typography>
                       }
                       secondary={
@@ -137,7 +137,7 @@ export function Mobile() {
                             fontFeatureSettings: 'clig off, liga off',
                           }}
                         >
-                          Camila.ux@gmail.com
+                          {user?.email}
                         </Typography>
                       }
                     />

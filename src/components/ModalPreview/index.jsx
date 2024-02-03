@@ -14,7 +14,7 @@ export function ModalPreview({ open = false, closeModal, project }) {
   const data = new Date(project.updatedAt)
   const month = ('0' + (data.getUTCMonth() + 1)).slice(-2)
   const year = ('' + data.getUTCFullYear()).slice(-2)
-
+  
   return (
     <Modal
       open={open}
@@ -25,6 +25,7 @@ export function ModalPreview({ open = false, closeModal, project }) {
     >
       <Box
         sx={{
+          marginTop: '148px',
           position: 'absolute',
           top: '50%',
           left: '50%',
@@ -35,7 +36,6 @@ export function ModalPreview({ open = false, closeModal, project }) {
           padding: '56px 102px',
 
           '@media (max-width: 768px)': {
-            marginTop: '148px',
             borderRadius: '24px 24px 0px 0px',
             padding: '32px 28px',
             width: '360px',
@@ -65,13 +65,15 @@ export function ModalPreview({ open = false, closeModal, project }) {
             </Autor>
             <h5>{project.titulo}</h5>
             <TagsContainer>
-              <Chip label="UX" color="default" size="medium" variant="filled" />
-              <Chip
-                label="Web"
-                color="default"
-                size="medium"
-                variant="filled"
-              />
+            {project.tags !== '' && project.tags.split(',').map((tag) => (
+                <Chip
+                  key={tag.trim()}
+                  label={tag.trim()}
+                  color="default"
+                  size="medium"
+                  variant="filled"
+                />
+              ))}
             </TagsContainer>
           </ModalHeader>
           <CardImage img={project.arquivo} />
@@ -86,13 +88,15 @@ export function ModalPreview({ open = false, closeModal, project }) {
               </div>
             </Autor>
             <TagsContainer>
-              <Chip label="UX" color="default" size="medium" variant="filled" />
-              <Chip
-                label="Web"
-                color="default"
-                size="medium"
-                variant="filled"
-              />
+                {project.tags !== '' && project.tags.split(',').map((tag) => (
+                <Chip
+                  key={tag.trim()}
+                  label={tag.trim()}
+                  color="default"
+                  size="medium"
+                  variant="filled"
+                />
+              ))}
             </TagsContainer>
           </OnlyMobile>
           <ModalFooter>

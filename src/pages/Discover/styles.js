@@ -68,6 +68,7 @@ export const ProjectList = styled.div`
   justify-content: left;
   flex-wrap: wrap;
   gap: 24px;
+  margin-bottom: 32px;
 
   @media (max-width: 768px) {
     display: flex;

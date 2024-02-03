@@ -121,7 +121,7 @@ export const OnlyMobile = styled.div`
   justify-content: space-between;
   margin-top: 8px;
 
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     display: none;
   }
 `

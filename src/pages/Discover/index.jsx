@@ -17,7 +17,17 @@ export function Discover() {
   const [projectsFiltered, setProjectsFiltered] = useState([])
   const [isOpenModalPreview, setIsOpenModalPreview] = useState(false)
 
-  const [project, setProject] = useState({})
+  const [project, setProject] = useState({
+    titulo: '',
+    tags: '',
+    link: '',
+    descricao: '',
+    arquivo: '',
+    updatedAt: new Date(),
+    'Usuario.url_avatar': '',
+    'Usuario.nome': '',
+    'Usuario.sobrenome': '',
+  })
 
   function openModalPreview() {
     setIsOpenModalPreview(true)
