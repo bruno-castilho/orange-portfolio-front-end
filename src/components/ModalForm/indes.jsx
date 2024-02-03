@@ -25,9 +25,9 @@ export function ModalForm({
     watch,
   } = useFormContext()
 
-  function handleSubmitForm(data) {
+  async function handleSubmitForm(data) {
     if (doIt === 'create') {
-      createProject(data)
+      await createProject(data)
     } else if (doIt === 'edit') {
       editProject(data)
     }
