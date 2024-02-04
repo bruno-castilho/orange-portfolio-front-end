@@ -79,7 +79,7 @@ export function Register() {
       senha: queryParams.get('senha') || '',
       url_avatar:
         queryParams.get('url_avatar') ||
-        'https://i.pinimg.com/564x/9d/47/13/9d471323edafbd06af73d4b78ce2aaf3.jpg',
+        'https://a3mv27ssx8tdeppa.public.blob.vercel-storage.com/avatar-pgZR6SnaMObUlvhh6gXsEVgcFCG1EG.png',
     },
   })
 

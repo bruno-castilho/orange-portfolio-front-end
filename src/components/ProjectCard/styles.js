@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 export const ProjectCardImg = styled.div`
   position: relative;
@@ -74,32 +74,28 @@ export const ProjectCardInfoPublication = styled.div`
     padding-left: 8px;
   }
 
-  ${(props) =>
-    props.isMyProject &&
-    css`
-      @media (max-width: 768px) {
-        & > img {
-          width: 40px;
-          height: 40px;
-        }
+  @media (max-width: 768px) {
+    & > img {
+      width: 40px;
+      height: 40px;
+    }
 
-        & > div > p {
-          display: block;
-          margin-bottom: 8px;
+    & > div > p {
+      display: block;
+      margin-bottom: 8px;
 
-          color: var(--color-neutral-120, #303133);
-        }
+      color: var(--color-neutral-120, #303133);
+    }
 
-        & > div > span {
-          display: flex;
-        }
+    & > div > span {
+      display: flex;
+    }
 
-        & > div > span::before {
-          content: none;
-          padding: 0;
-        }
-      }
-    `}
+    & > div > span::before {
+      content: none;
+      padding: 0;
+    }
+  }
 `
 
 export const ProjectCardInfoTags = styled.div`
