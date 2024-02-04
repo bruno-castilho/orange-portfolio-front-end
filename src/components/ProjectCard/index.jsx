@@ -63,11 +63,10 @@ export function CardProject({
                   width: '208px',
                   minHeight: '104px',
                   borderRadius: '8px',
-                  background: 'var(--Neutral-Colors-Neutral-60, #FCFDFF)',
+                  background: 'var(--color-neutral-60)',
                   boxShadow: '2px 2px 8px 0px rgba(0, 0, 0, 0.30)',
                   padding: '16px 0px',
-                  color:
-                    'var(--Neutral-Colors-Neutral-110, var(--Neutral-Colors-Neutral-110, #515255))',
+                  color: 'var(--color-neutral-110)',
                 },
               }}
             >
@@ -85,8 +84,7 @@ export function CardProject({
                   letterSpacing: '0.15px',
                   marginBottom: '8px',
                   ':hover': {
-                    background:
-                      'var(--Color-Brand-Secundria-Secondary-60, #FEC)',
+                    background: 'var(--color-secondary-60)',
                   },
                 }}
               >
@@ -105,8 +103,7 @@ export function CardProject({
                   lineHeight: '16px',
                   letterSpacing: '0.15px',
                   ':hover': {
-                    background:
-                      'var(--Color-Brand-Secundria-Secondary-60, #FEC)',
+                    background: 'var(--color-secondary-60)',
                   },
                 }}
               >
@@ -129,15 +126,18 @@ export function CardProject({
         </ProjectCardInfoPublication>
 
         <ProjectCardInfoTags>
-          {project.tags !== '' && project.tags.split(',').map((tag) => (
-            <Chip
-              key={tag.trim()}
-              label={tag.trim()}
-              color="default"
-              size="medium"
-              variant="filled"
-            />
-          ))}
+          {project.tags !== '' &&
+            project.tags
+              .split(',')
+              .map((tag) => (
+                <Chip
+                  key={tag.trim()}
+                  label={tag.trim()}
+                  color="default"
+                  size="medium"
+                  variant="filled"
+                />
+              ))}
         </ProjectCardInfoTags>
       </ProjectCardInfo>
     </div>

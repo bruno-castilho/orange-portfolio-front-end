@@ -25,7 +25,7 @@ export const MenuButtonContainer = styled.div`
   right: 16px;
   top: 16px;
 
-  background: var(--Color-Brand-Secundria-Secondary-70, #fc9);
+  background: var(--color-secondary-70);
   border-radius: 300px;
   width: 28px;
   height: 28px;
@@ -87,7 +87,7 @@ export const ProjectCardInfoPublication = styled.div`
           display: block;
           margin-bottom: 8px;
 
-          color: var(--Neutral-Colors-Neutral-120, #303133);
+          color: var(--color-neutral-120, #303133);
         }
 
         & > div > span {

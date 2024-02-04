@@ -19,7 +19,7 @@ export const DiscoverHeader = styled.header`
 
   & > h5 {
     width: 744px;
-    color: var(--Color-Brand-Primria-Primary-90, #224);
+    color: var(--color-principal-90);
     text-align: center;
 
     font-family: Roboto;
