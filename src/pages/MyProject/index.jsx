@@ -215,6 +215,12 @@ export function MyProject() {
               color="primary"
               size="large"
               onClick={handleCreateProject}
+              sx={{
+                background: 'var(--color-secondary-100)',
+                '&:hover': {
+                  background: 'var(--color-secondary-110)',
+                },
+              }}
             >
               Adicionar Projeto
             </Button>
