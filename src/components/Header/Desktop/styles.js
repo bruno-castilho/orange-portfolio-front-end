@@ -13,7 +13,7 @@ export const HeaderContainer = styled.header`
   border-right: 0px solid #113;
   border-bottom: 1px solid #113;
   border-left: 0px solid #113;
-  background: #113;
+  background: var(--color-principal-100);
 
   @media (max-width: 768px) {
     & {

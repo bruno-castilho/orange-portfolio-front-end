@@ -11,6 +11,7 @@ import { useFormContext } from 'react-hook-form'
 import { useContext, useEffect, useState } from 'react'
 import { ModalPreview } from '../ModalPreview'
 import { AuthContext } from '../../contexts/AuthContext'
+import { InputTags } from '../InputTags'
 
 export function ModalForm({
   open = false,
@@ -22,6 +23,17 @@ export function ModalForm({
 }) {
   const { user } = useContext(AuthContext)
   const [img, setImg] = useState('')
+  const [tags, setTags] = useState([])
+
+  const newTagDetected = (tag) => {
+    setTags([...tags, tag])
+  }
+
+  const deleteTag = (index) => {
+    const newTags = [...tags]
+    newTags.splice(index, 1)
+    setTags(newTags)
+  }
 
   const [project, setProject] = useState({
     titulo: '',
@@ -46,6 +58,7 @@ export function ModalForm({
   } = useFormContext()
 
   async function handleSubmitForm(data) {
+    data.tags = tags.join()
     if (doIt === 'create') {
       await createProject(data)
     } else if (doIt === 'edit') {
@@ -53,7 +66,13 @@ export function ModalForm({
     }
   }
 
-  const modalTitle = doIt === 'edit' ? 'Editar projeto ' : 'Adicionar Projeto'
+  const t = watch('tags')
+
+  useEffect(() => {
+    setTags(t ? t.split(',') : [])
+  }, [t])
+
+  const modalTitle = doIt === 'edit' ? 'Editar Projeto ' : 'Adicionar Projeto'
 
   const file = watch('file')
   const urlImg = watch('urlImg')
@@ -63,7 +82,7 @@ export function ModalForm({
       setProject((project) => ({
         ...project,
         titulo: getValues('titulo'),
-        tags: getValues('tags'),
+        tags: tags.join(),
         link: getValues('link'),
         descricao: getValues('descricao'),
         arquivo: img,
@@ -75,6 +94,7 @@ export function ModalForm({
       setIsOpenModalPreview(true)
     }
   }
+
   function closeModalPreview() {
     setIsOpenModalPreview(false)
     openModal()
@@ -83,8 +103,6 @@ export function ModalForm({
   useEffect(() => {
     setImg(file && file.length !== 0 ? URL.createObjectURL(file[0]) : urlImg)
   }, [file, urlImg])
-
-  //
 
   return (
     <>
@@ -155,13 +173,12 @@ export function ModalForm({
                   error={errors.titulo?.message}
                   {...register('titulo')}
                 />
-                <TextField
-                  fullWidth
-                  label="Tags"
-                  variant="outlined"
-                  size="medium"
-                  {...register('tags')}
+                <InputTags
+                  tags={tags}
+                  newTagDetected={newTagDetected}
+                  deleteTag={deleteTag}
                 />
+
                 <TextField
                   fullWidth
                   label="Link"
