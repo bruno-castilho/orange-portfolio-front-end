@@ -117,8 +117,6 @@ export function MyProject() {
   async function editProject(data) {
     let arquivo = data.urlImg
     if (data.file.length) {
-      if (arquivo) deleteFile(arquivo)
-
       const formData = new FormData()
       formData.append('file', data.file[0])
       const resposta = await upload(formData)
