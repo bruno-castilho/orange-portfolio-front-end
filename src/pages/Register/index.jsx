@@ -82,7 +82,7 @@ export function Register() {
       senha: queryParams.get('senha') || '',
       url_avatar:
         queryParams.get('url_avatar') ||
-        'https://a3mv27ssx8tdeppa.public.blob.vercel-storage.com/avatar-88HAFrqMDnFr1gXpWkYyAGEvtxP0Mi.png',
+        import.meta.env.VITE_IMAGE_PERFIL_DEFAULT,
     },
   })
 
