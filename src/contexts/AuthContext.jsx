@@ -43,7 +43,9 @@ export function AuthContextProvider({ children }) {
           const { data } = response
 
           if (data.logged) {
-            loginSucess(data)
+            localStorage.setItem('@orange-portfolio:token', data.token)
+            setToken(data.token)
+            setUser(data.user)
             if (path === '/login' || path === '/registrar')
               navigate('/meusprojetos')
           } else {
