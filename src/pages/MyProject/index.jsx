@@ -21,6 +21,7 @@ import * as zod from 'zod'
 import { deleteFile, upload } from '../../confs/VercelBlob'
 import { ModalSuccess } from '../../components/ModalSuccess'
 import { ModalDelete } from '../../components/ModalDelete'
+import { Loading } from '../../components/Loading'
 
 const ProjectValidationSchema = zod.object({
   titulo: zod.string().min(1, { message: 'Digite o titulo do projeto' }),
@@ -42,6 +43,7 @@ export function MyProject() {
   const [messageModalSuccess, setMessageModalSuccess] = useState('')
   const [projectToDelete, setProjectToDelete] = useState(null)
   const [doIt, setDoIt] = useState('')
+  const [activeLoading, setActiveLoading] = useState(false)
 
   const ProjectFormData = useForm({
     resolver: zodResolver(ProjectValidationSchema),
@@ -84,6 +86,8 @@ export function MyProject() {
   const CloseModalDelete = () => setIsOpenModalDelete(false)
 
   async function createProject(data) {
+    closeModalForm()
+    setActiveLoading(true)
     let arquivo = ''
     if (data.file.length) {
       const formData = new FormData()
@@ -105,16 +109,19 @@ export function MyProject() {
       .post(`/projetos`, params)
       .then((response) => {
         setProjects((projects) => [response.data, ...projects])
-        closeModalForm()
+        setActiveLoading(false)
         setMessageModalSuccess('Projeto adicionado com sucesso!')
         OpenModalSuccess()
       })
       .catch((error) => {
         console.log(error)
+        setActiveLoading(false)
       })
   }
 
   async function editProject(data) {
+    closeModalForm()
+    setActiveLoading(true)
     let arquivo = data.urlImg
     if (data.file.length) {
       const formData = new FormData()
@@ -153,16 +160,19 @@ export function MyProject() {
 
         setProjects([newProject, ...newProjects])
 
-        closeModalForm()
+        setActiveLoading(false)
         setMessageModalSuccess('Edição concluída com sucesso!')
         OpenModalSuccess()
       })
       .catch((error) => {
         console.log(error)
+        setActiveLoading(false)
       })
   }
 
   async function deleteProject(project) {
+    CloseModalDelete()
+    setActiveLoading(true)
     if (project.arquivo) deleteFile(project.arquivo)
 
     const params = { token }
@@ -172,7 +182,7 @@ export function MyProject() {
     const newProjects = projects.filter((p) => p.id !== project.id)
 
     setProjects(newProjects)
-    CloseModalDelete()
+    setActiveLoading(false)
     setMessageModalSuccess('Projeto deletado com sucesso!')
     OpenModalSuccess()
   }
@@ -270,6 +280,7 @@ export function MyProject() {
           handleDelete={deleteProject}
           projectToDelete={projectToDelete}
         />
+        <Loading active={activeLoading} />
       </FormProvider>
     </MyProjectContainer>
   )
