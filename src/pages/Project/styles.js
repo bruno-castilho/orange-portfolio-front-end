@@ -20,6 +20,7 @@ export const Footer = styled.footer`
   margin-top: 24px;
 
   & > p {
+    text-align: justify;
     font-family: 'Roboto';
     font-weight: 400;
     font-size: 16px;

@@ -28,6 +28,7 @@ export const ModalFooter = styled.footer`
   margin-top: 64px;
 
   & > p {
+    text-align: justify;
     font-family: 'Roboto';
     font-weight: 400;
     font-size: 16px;
