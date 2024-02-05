@@ -27,8 +27,9 @@ import * as zod from 'zod'
 
 import { useLocation } from 'react-router-dom'
 import api from '../../confs/api'
-import { useRef, useState } from 'react'
+import { useContext, useRef, useState } from 'react'
 import { Visibility, VisibilityOff } from '@mui/icons-material'
+import { AuthContext } from '../../contexts/AuthContext'
 
 const RegisterValidationSchema = zod.object({
   nome: zod.string().min(1, { message: 'Digite seu nome' }),
@@ -41,6 +42,7 @@ const RegisterValidationSchema = zod.object({
 })
 
 export function Register() {
+  const { loginSucess } = useContext(AuthContext)
   const [showPassword, setShowPassword] = useState(false)
   const location = useLocation()
   const queryParams = new URLSearchParams(location.search)
@@ -53,11 +55,12 @@ export function Register() {
   function handleCrateNewAccount(data) {
     api
       .post('/usuarios', data)
-      .then(() => {
+      .then((response) => {
         setAlertState({
           msg: 'Cadastro feito com sucesso',
           severity: 'success',
         })
+        loginSucess(response.data)
       })
       .catch(() => {
         setAlertState({
