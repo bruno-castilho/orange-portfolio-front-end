@@ -61,8 +61,10 @@ export function ModalForm({
     data.tags = tags.join()
     if (doIt === 'create') {
       await createProject(data)
+      setTags([])
     } else if (doIt === 'edit') {
       await editProject(data)
+      setTags([])
     }
   }
 
