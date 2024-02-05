@@ -1,10 +1,12 @@
 import { CardProject } from '../../components/ProjectCard'
 import { Footer, ProjectContainer } from './styles'
 import { useParams } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import api from '../../confs/api'
+import { AuthContext } from '../../contexts/AuthContext'
 
 export function Project() {
+  const { token } = useContext(AuthContext)
   const { id } = useParams()
   const [project, setProject] = useState({
     titulo: '',
@@ -19,8 +21,9 @@ export function Project() {
   })
 
   useEffect(() => {
+    const params = { token }
     api
-      .get(`/projetos/${id}`, {})
+      .get(`/projetos/${id}`, { params })
       .then((response) => {
         setProject(response.data)
       })
