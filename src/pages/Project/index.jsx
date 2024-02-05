@@ -8,17 +8,7 @@ import { AuthContext } from '../../contexts/AuthContext'
 export function Project() {
   const { token } = useContext(AuthContext)
   const { id } = useParams()
-  const [project, setProject] = useState({
-    titulo: '',
-    descricao: '',
-    arquivo: '',
-    tags: '',
-    link: '',
-    'Usuario.url_avatar': 'img',
-    'Usuario.nome': '',
-    'Usuario.sobrenome': '',
-    updatedAt: '',
-  })
+  const [project, setProject] = useState(null)
 
   useEffect(() => {
     const params = { token }
@@ -33,14 +23,18 @@ export function Project() {
   }, [])
 
   return (
-    <ProjectContainer>
-      <h5>{project.titulo}</h5>
-      <CardProject project={project} />
-      <Footer>
-        <p>{project.descricao}</p>
-        <span>Download</span>
-        <a href={project.link}>{project.link}</a>
-      </Footer>
-    </ProjectContainer>
+    <>
+      {project && (
+        <ProjectContainer>
+          <h5>{project.titulo}</h5>
+          <CardProject project={project} />
+          <Footer>
+            <p>{project.descricao}</p>
+            <span>Download</span>
+            <a href={project.link}>{project.link}</a>
+          </Footer>
+        </ProjectContainer>
+      )}
+    </>
   )
 }
