@@ -33,10 +33,7 @@ export function CardProject({
   const year = ('' + data.getUTCFullYear()).slice(-2)
 
   return (
-    <div
-      style={{ cursor: isMyProject ? 'default' : 'pointer' }}
-      onClick={onClick}
-    >
+    <div style={{ cursor: onClick ? 'pointer' : 'default' }} onClick={onClick}>
       <ProjectCardImg img={project.arquivo}>
         {isMyProject && (
           <>

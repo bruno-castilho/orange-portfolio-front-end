@@ -85,8 +85,6 @@ export const Autor = styled.div`
   }
 
   & > div {
-    text-align: center;
-
     font-family: Roboto;
     font-size: 16px;
     font-style: normal;

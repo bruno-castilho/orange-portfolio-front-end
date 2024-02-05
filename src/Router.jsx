@@ -6,6 +6,7 @@ import { Login } from './pages/Login/index.jsx'
 import { Register } from './pages/Register/index.jsx'
 import { AuthContextProvider } from './contexts/AuthContext.jsx'
 import { Callback } from './pages/Callback/index.jsx'
+import { Project } from './pages/Project/index.jsx'
 
 export function Router() {
   return (
@@ -19,6 +20,7 @@ export function Router() {
         <Route path="/" element={<DefaultLayout />}>
           <Route path="/meusprojetos" element={<MyProject />} />
           <Route path="/descobrir" element={<Discover />} />
+          <Route path="/projeto/:id" element={<Project />} />
         </Route>
 
         <Route path="*" element={<h1>Not Found</h1>} />

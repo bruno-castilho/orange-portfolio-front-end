@@ -10,12 +10,15 @@ import {
 } from './styles'
 import { CardProject } from '../../components/ProjectCard'
 import { ModalPreview } from '../../components/ModalPreview'
+import { useNavigate } from 'react-router'
 
 export function Discover() {
   const { token } = useContext(AuthContext)
   const [projects, setProjects] = useState([])
   const [projectsFiltered, setProjectsFiltered] = useState([])
   const [isOpenModalPreview, setIsOpenModalPreview] = useState(false)
+
+  const navigate = useNavigate()
 
   const [project, setProject] = useState({
     titulo: '',
@@ -37,8 +40,12 @@ export function Discover() {
   }
 
   function handlePreview(project) {
-    setProject(project)
-    openModalPreview()
+    if (window.innerWidth <= 768) {
+      navigate(`/projeto/${project.id}`)
+    } else {
+      setProject(project)
+      openModalPreview()
+    }
   }
 
   useEffect(() => {
