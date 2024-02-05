@@ -110,7 +110,10 @@ export function ModalForm({
     <>
       <Modal
         open={open}
-        onClose={closeModal}
+        onClose={() => {
+          closeModal()
+          setTags([])
+        }}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
         disableScrollLock={false}
@@ -236,7 +239,10 @@ export function ModalForm({
                   color="primary"
                   size="large"
                   type="submit"
-                  onClick={closeModal}
+                  onClick={() => {
+                    closeModal()
+                    setTags([])
+                  }}
                 >
                   CANCELAR
                 </Button>
