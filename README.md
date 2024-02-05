@@ -15,7 +15,8 @@ Este é o front-end desenvolvido para o hackathon do projeto de formação da Or
 
 ```
 VITE_BLOB_READ_WRITE_TOKEN=    # Credencial obtida na Vercel
-VITE_BASE_URL=                 # Endereço do back-end 
+VITE_BASE_URL=                 # Endereço do back-end
+VITE_IMAGE_PERFIL_DEFAULT=     # Imagem default para perfil
 ```
 
 2. Faça a instalação dos pacotes necessários:
