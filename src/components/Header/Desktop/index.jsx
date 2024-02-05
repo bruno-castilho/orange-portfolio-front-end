@@ -9,7 +9,7 @@ import { useContext } from 'react'
 import { AuthContext } from '../../../contexts/AuthContext'
 
 export function Desktop() {
-  const { user } = useContext(AuthContext)
+  const { user, handleLogout } = useContext(AuthContext)
   return (
     <HeaderContainer>
       <HeaderMenuContent>
@@ -22,7 +22,7 @@ export function Desktop() {
 
       <HeaderUserContent>
         <img src={user?.url_avatar} alt="" />
-        <IconButton color="inherit" size="medium">
+        <IconButton color="inherit" size="medium" onClick={handleLogout}>
           <Notifications />
         </IconButton>
       </HeaderUserContent>
