@@ -116,9 +116,7 @@ export function CardProject({
           <img src={project['Usuario.url_avatar']} alt="" />
           <div>
             <p>{`${project['Usuario.nome']} ${project['Usuario.sobrenome']}`}</p>
-            <span>
-              {month}/{year}
-            </span>
+            <span>{`${month}/${year}`}</span>
           </div>
         </ProjectCardInfoPublication>
 
